@@ -1,23 +1,160 @@
-<main class="home-page">
-  <section class="home-card" aria-labelledby="home-title">
-    <div class="home-mark" aria-hidden="true">
-      <span class="material-symbols-outlined">neurology</span>
+<div class="dashboard-layout">
+  <nav class="side-nav" aria-label="Primary navigation">
+    <a class="side-nav__brand" routerLink="/home">Synaptic</a>
+
+    <div class="side-nav__links">
+      @for (item of navigationItems; track item.label) {
+        <a
+          class="side-nav__link"
+          [class.side-nav__link--active]="item.isActive"
+          href="#"
+        >
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
+          <span>{{ item.label }}</span>
+        </a>
+      }
     </div>
 
-    <p class="home-eyebrow">Workspace ready</p>
-    <h1 id="home-title" class="home-title">You're signed in.</h1>
-    <p class="home-copy">
-      Your learning workspace is connected. Topic browsing and active sessions
-      will appear here next.
-    </p>
+    <div class="side-nav__footer">
+      <button class="dashboard-button dashboard-button--primary" type="button">
+        Continue Session
+      </button>
+      <button class="user-summary" type="button" (click)="signOut()">
+        <span class="user-summary__avatar" aria-hidden="true">D</span>
+        <span>
+          <strong>Developer</strong>
+          <span>Sign out</span>
+        </span>
+      </button>
+    </div>
+  </nav>
 
-    <a
-      class="syn-button syn-button--primary"
-      routerLink="/login"
-      (click)="signOut()"
-    >
-      <span>Sign Out</span>
-      <span class="material-symbols-outlined">logout</span>
-    </a>
-  </section>
-</main>
+  <header class="mobile-header">
+    <a class="mobile-header__brand" routerLink="/home">Synaptic</a>
+    <div>
+      <button type="button" aria-label="Notifications">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button type="button" aria-label="Sign out" (click)="signOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <header class="dashboard-hero">
+      <h1>Deep Work Dashboard</h1>
+      <p>Resume your flow state or explore new computational concepts.</p>
+    </header>
+
+    <section class="dashboard-section" aria-labelledby="active-sessions-title">
+      <h2 id="active-sessions-title" class="section-title">
+        <span class="material-symbols-outlined">data_usage</span>
+        Active Sessions
+      </h2>
+
+      <div class="active-grid">
+        <article class="active-card">
+          <div class="active-card__texture" aria-hidden="true"></div>
+          <div class="active-card__content">
+            <div class="active-card__header">
+              <div>
+                <p class="topic-pill">{{ activeTopic.badgeLabel }}</p>
+                <h3>{{ activeTopic.title }}</h3>
+                <p>{{ activeTopic.description }}</p>
+              </div>
+              <div class="topic-icon" aria-hidden="true">
+                <span class="material-symbols-outlined">{{
+                  activeTopic.icon
+                }}</span>
+              </div>
+            </div>
+
+            <div class="progress-block">
+              <div class="progress-meta">
+                <span>{{ activeTopic.module }}</span>
+                <span>{{ activeTopic.progress }}% Complete</span>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div
+                  class="progress-bar"
+                  [style.width.%]="activeTopic.progress"
+                ></div>
+              </div>
+              <div class="active-card__action">
+                <button
+                  class="dashboard-button dashboard-button--primary dashboard-button--inline"
+                  type="button"
+                >
+                  Continue
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-section" aria-labelledby="curriculum-title">
+      <h2 id="curriculum-title" class="section-title section-title--bordered">
+        <span class="material-symbols-outlined">grid_view</span>
+        Explore Curriculum
+      </h2>
+
+      @if (isLoadingTopics()) {
+        <p class="catalog-state">Loading topics from the API...</p>
+      } @else if (topicLoadError() !== "") {
+        <p class="catalog-state catalog-state--muted">{{ topicLoadError() }}</p>
+      } @else if (topicGroups().length === 0) {
+        <p class="catalog-state catalog-state--muted">
+          No topics are available yet.
+        </p>
+      } @else {
+        @for (group of topicGroups(); track group.title) {
+          <section class="topic-group" [attr.aria-label]="group.title">
+            <h3>{{ group.title }}</h3>
+            <div class="topic-grid">
+              @for (topic of group.topics; track topic.slug) {
+                <article class="topic-card">
+                  <div class="topic-card__header">
+                    <div
+                      class="topic-icon topic-icon--compact"
+                      aria-hidden="true"
+                    >
+                      <span class="material-symbols-outlined">{{
+                        topic.icon
+                      }}</span>
+                    </div>
+                    <span class="topic-chip">{{ topic.badgeLabel }}</span>
+                  </div>
+                  <h4>{{ topic.title }}</h4>
+                  <p>{{ topic.description }}</p>
+                  <button
+                    class="dashboard-button dashboard-button--secondary"
+                    type="button"
+                  >
+                    Start Module
+                  </button>
+                </article>
+              }
+            </div>
+          </section>
+        }
+      }
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    @for (item of navigationItems.slice(0, 3); track item.label) {
+      <a
+        class="bottom-nav__link"
+        [class.bottom-nav__link--active]="item.isActive"
+        href="#"
+      >
+        <span class="material-symbols-outlined">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+</div>

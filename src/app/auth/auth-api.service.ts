@@ -40,11 +40,19 @@ export class AuthApiService {
   }
 
   /**
+   * Reads the stored JWT access token from the browser session.
+   * @returns {string | null}
+   */
+  public getAuthToken(): string | null {
+    return localStorage.getItem('synaptic_token');
+  }
+
+  /**
    * Checks whether the browser has a non-expired JWT access token.
    * @returns {boolean}
    */
   public hasValidAuthToken(): boolean {
-    const token = localStorage.getItem('synaptic_token');
+    const token = this.getAuthToken();
 
     if (token === null) {
       return false;
