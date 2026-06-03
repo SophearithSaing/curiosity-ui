@@ -42,6 +42,14 @@
 - **Quotes:** Use single quotes `'` for strings unless double quotes are required for JSON.
 - **Line Width:** Keep code blocks under 80 characters per line where possible.
 - **Comment:** Every function MUST have a return type and TS Doc header. Body comments are forbidden, except for complex algorithmic logic in long functions or non-obvious workarounds for third-party bugs.
+- **TS Doc convention:**
+  ```
+  /**
+  * Logs a message to the console.
+  * @param {string} message - The text to log.
+  * @returns {void}
+  */
+  ```
 
 ### TypeScript
 
