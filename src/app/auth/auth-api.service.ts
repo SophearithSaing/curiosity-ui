@@ -40,11 +40,29 @@ export class AuthApiService {
   }
 
   /**
-   * Checks whether the browser has a stored JWT access token.
+   * Checks whether the browser has a non-expired JWT access token.
    * @returns {boolean}
    */
-  public hasAuthToken(): boolean {
-    return localStorage.getItem('synaptic_token') !== null;
+  public hasValidAuthToken(): boolean {
+    const token = localStorage.getItem('synaptic_token');
+
+    if (token === null) {
+      return false;
+    }
+
+    const payload = this.readJwtPayload(token);
+
+    if (payload === null) {
+      return false;
+    }
+
+    const expiresAt = payload['exp'];
+
+    if (typeof expiresAt !== 'number') {
+      return true;
+    }
+
+    return expiresAt * 1000 > Date.now();
   }
 
   /**
@@ -53,5 +71,36 @@ export class AuthApiService {
    */
   public clearAuthToken(): void {
     localStorage.removeItem('synaptic_token');
+  }
+
+  /**
+   * Safely reads the decoded payload from a JWT access token.
+   * @param {string} token - JWT access token to decode.
+   * @returns {Record<string, unknown> | null}
+   */
+  private readJwtPayload(token: string): Record<string, unknown> | null {
+    const payload = token.split('.')[1];
+
+    if (payload === undefined) {
+      return null;
+    }
+
+    try {
+      const normalized = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const padded = normalized.padEnd(
+        normalized.length + ((4 - (normalized.length % 4)) % 4),
+        '=',
+      );
+      const decoded = atob(padded);
+      const parsed: unknown = JSON.parse(decoded);
+
+      if (typeof parsed === 'object' && parsed !== null) {
+        return parsed as Record<string, unknown>;
+      }
+    } catch {
+      return null;
+    }
+
+    return null;
   }
 }

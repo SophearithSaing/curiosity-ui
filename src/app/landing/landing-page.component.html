@@ -1,0 +1,130 @@
+<main class="landing-page">
+  <div class="landing-grid" aria-hidden="true"></div>
+
+  <section class="landing-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-badge">
+        <span class="material-symbols-outlined hero-badge__icon">memory</span>
+        <span>Synaptic Protocol v2.0</span>
+      </div>
+
+      <h1 id="hero-title" class="hero-title">
+        Master Technical Concepts Through
+        <span>Cognitive Science.</span>
+      </h1>
+
+      <p class="hero-copy">
+        A rigorous, science-first curriculum engineered for deep architectural
+        understanding. Utilizing adaptive retrieval practice and spaced
+        repetition to transition knowledge from passive recognition to active
+        recall.
+      </p>
+
+      <div class="hero-actions" aria-label="Landing page actions">
+        <a
+          class="landing-button landing-button--primary"
+          routerLink="/register"
+        >
+          Start Learning
+        </a>
+        <a class="landing-button landing-button--secondary" href="#curriculum">
+          Explore Topics
+        </a>
+      </div>
+
+      <p class="hero-sign-in">
+        Already have an account?
+        <a routerLink="/login">Sign in</a>
+      </p>
+    </section>
+
+    <section class="methodology" aria-labelledby="methodology-title">
+      <div class="methodology-copy">
+        <h2 id="methodology-title">The Science of Learning</h2>
+        <p>
+          Traditional learning models prioritize passive ingestion, leading to
+          rapid decay of complex architectural paradigms. Synaptic enforces a
+          high-friction, low-decay methodology.
+        </p>
+        <p>
+          By strategically timing cognitive stress through algorithmic spaced
+          repetition, we force the brain to construct durable mental models
+          rather than fragile, short-term memorization.
+        </p>
+
+        <ul class="principle-list" aria-label="Learning principles">
+          @for (principle of principles; track principle.title) {
+            <li class="principle-item">
+              <span class="material-symbols-outlined"
+                >radio_button_checked</span
+              >
+              <div>
+                <strong>{{ principle.title }}</strong>
+                <p>{{ principle.description }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <aside class="mastery-card" aria-labelledby="mastery-title">
+        <div class="mastery-glow" aria-hidden="true"></div>
+        <div>
+          <h3 id="mastery-title">Progressive Mastery</h3>
+          <p>Quantifiable transition from exposure to structural synthesis.</p>
+        </div>
+
+        <div class="phase-list">
+          @for (phase of phases; track phase.title) {
+            <div class="phase">
+              <div class="phase-header">
+                <span>{{ phase.title }}</span>
+                <span>{{ phase.status }}</span>
+              </div>
+              <div class="phase-track" aria-hidden="true">
+                <div class="phase-bar" [style.width.%]="phase.progress">
+                  @if (phase.isActive) {
+                    <span class="phase-cursor"></span>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </aside>
+    </section>
+
+    <section
+      id="curriculum"
+      class="curriculum"
+      aria-labelledby="curriculum-title"
+    >
+      <div class="curriculum-header">
+        <div>
+          <h2 id="curriculum-title">Core Curriculum</h2>
+          <p>Deep-dive technical paths structured around first principles.</p>
+        </div>
+        <a class="curriculum-link" routerLink="/register">
+          View Full Index
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="curriculum-grid">
+        @for (path of curriculumPaths; track path.code) {
+          <article class="curriculum-card">
+            <div class="curriculum-card__accent" aria-hidden="true"></div>
+            <p class="curriculum-card__code">{{ path.code }}</p>
+            <h3>{{ path.title }}</h3>
+            <p>{{ path.description }}</p>
+            <div class="chip-list" aria-label="Path tags">
+              @for (tag of path.tags; track tag) {
+                <span class="knowledge-chip">{{ tag }}</span>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  </section>
+</main>

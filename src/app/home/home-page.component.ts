@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
    * @returns {void}
    */
   public ngOnInit(): void {
-    if (!this.authApi.hasAuthToken()) {
+    if (!this.authApi.hasValidAuthToken()) {
       void this.router.navigateByUrl('/login');
     }
   }
