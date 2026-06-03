@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.auth-error {
+  color: var(--syn-error);
+  font-family: var(--syn-font-body);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin: calc(var(--syn-space-xs) * -1) 0 0;
+}
+
+.syn-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}

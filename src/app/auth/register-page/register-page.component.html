@@ -1,0 +1,126 @@
+<main class="syn-auth-page">
+  <section class="syn-auth-panel" aria-labelledby="register-title">
+    <header class="syn-auth-brand syn-auth-brand--outside">
+      <h1 class="syn-brand-title">Synaptic</h1>
+    </header>
+
+    <form
+      class="syn-auth-card syn-auth-card--quiet syn-auth-card--spacious"
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+    >
+      <div>
+        <h2 id="register-title" class="syn-auth-title">Create Account</h2>
+        <p class="syn-auth-copy">
+          Enter your details to begin deep focus learning.
+        </p>
+      </div>
+
+      <div class="syn-auth-form">
+        <label class="syn-field" for="username">
+          <span class="syn-label">Username</span>
+          <span class="syn-field-control">
+            <span class="material-symbols-outlined syn-field-icon">person</span>
+            <input
+              id="username"
+              class="syn-input syn-input--with-leading-icon"
+              formControlName="username"
+              placeholder="student123"
+              type="text"
+              autocomplete="username"
+            />
+          </span>
+        </label>
+
+        <label class="syn-field" for="email">
+          <span class="syn-label">Email</span>
+          <span class="syn-field-control">
+            <span class="material-symbols-outlined syn-field-icon">mail</span>
+            <input
+              id="email"
+              class="syn-input syn-input--with-leading-icon"
+              formControlName="email"
+              placeholder="ada@synaptic.ai"
+              type="email"
+              autocomplete="email"
+            />
+          </span>
+        </label>
+
+        <label class="syn-field" for="password">
+          <span class="syn-label">Password</span>
+          <span class="syn-field-control">
+            <span class="material-symbols-outlined syn-field-icon">lock</span>
+            <input
+              id="password"
+              class="syn-input syn-input--code syn-input--with-leading-icon syn-input--with-trailing-action"
+              formControlName="password"
+              placeholder="••••••••"
+              [type]="passwordInputType()"
+              autocomplete="new-password"
+            />
+            <button
+              class="syn-field-action"
+              type="button"
+              aria-label="Toggle password visibility"
+              (click)="togglePasswordVisibility()"
+            >
+              <span class="material-symbols-outlined">{{
+                passwordIcon()
+              }}</span>
+            </button>
+          </span>
+        </label>
+
+        <label class="syn-field" for="confirmPassword">
+          <span class="syn-label">Confirm Password</span>
+          <span class="syn-field-control">
+            <span class="material-symbols-outlined syn-field-icon">
+              lock_reset
+            </span>
+            <input
+              id="confirmPassword"
+              class="syn-input syn-input--code syn-input--with-leading-icon syn-input--with-trailing-action"
+              formControlName="confirmPassword"
+              placeholder="••••••••"
+              [type]="confirmPasswordInputType()"
+              autocomplete="new-password"
+            />
+            <button
+              class="syn-field-action"
+              type="button"
+              aria-label="Toggle confirm password visibility"
+              (click)="toggleConfirmPasswordVisibility()"
+            >
+              <span class="material-symbols-outlined">
+                {{ confirmPasswordIcon() }}
+              </span>
+            </button>
+          </span>
+        </label>
+
+        @if (errorMessage() !== "") {
+          <p class="auth-error" role="alert">{{ errorMessage() }}</p>
+        }
+
+        <button
+          class="syn-button syn-button--primary syn-button--compact syn-button--full"
+          type="submit"
+          [disabled]="isSubmitting()"
+        >
+          <span>{{
+            isSubmitting() ? "Creating Account" : "Create Account"
+          }}</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+
+      <footer class="syn-auth-footer">
+        <p>
+          Already have an account?
+          <a class="syn-link" routerLink="/login">Sign In</a>
+        </p>
+      </footer>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,91 @@
+<main class="syn-auth-page">
+  <section class="syn-auth-panel" aria-labelledby="login-title">
+    <form class="syn-auth-card" [formGroup]="form" (ngSubmit)="submit()">
+      <header class="syn-auth-brand">
+        <div class="syn-brand-mark" aria-hidden="true">
+          <span class="material-symbols-outlined">neurology</span>
+        </div>
+        <h1 id="login-title" class="syn-brand-title">Synaptic</h1>
+        <p class="syn-auth-copy">Sign in to your learning environment</p>
+      </header>
+
+      <div class="syn-auth-form">
+        <label class="syn-field" for="email">
+          <span class="syn-label syn-label--uppercase">Email Address</span>
+          <span class="syn-field-control">
+            <span class="material-symbols-outlined syn-field-icon">mail</span>
+            <input
+              id="email"
+              class="syn-input syn-input--code syn-input--with-leading-icon"
+              formControlName="email"
+              placeholder="developer@synaptic.ai"
+              type="email"
+              autocomplete="email"
+            />
+          </span>
+        </label>
+
+        <div class="syn-field">
+          <div class="syn-field-header">
+            <label class="syn-label syn-label--uppercase" for="password">
+              Password
+            </label>
+            <a
+              class="syn-link syn-link--label"
+              href="mailto:support@synaptic.ai"
+            >
+              Forgot Password?
+            </a>
+          </div>
+          <span class="syn-field-control">
+            <span class="material-symbols-outlined syn-field-icon">lock</span>
+            <input
+              id="password"
+              class="syn-input syn-input--code syn-input--with-leading-icon syn-input--with-trailing-action"
+              formControlName="password"
+              placeholder="••••••••"
+              [type]="passwordInputType()"
+              autocomplete="current-password"
+            />
+            <button
+              class="syn-field-action"
+              type="button"
+              aria-label="Toggle password visibility"
+              (click)="togglePasswordVisibility()"
+            >
+              <span class="material-symbols-outlined">{{
+                passwordIcon()
+              }}</span>
+            </button>
+          </span>
+        </div>
+
+        @if (errorMessage() !== "") {
+          <p class="auth-error" role="alert">{{ errorMessage() }}</p>
+        }
+
+        @if (isLoginSuccessful()) {
+          <p class="auth-success" role="status">
+            Signed in. Preparing your workspace...
+          </p>
+        }
+
+        <button
+          class="syn-button syn-button--primary syn-button--full"
+          type="submit"
+          [disabled]="isSubmitting()"
+        >
+          <span>{{ isSubmitting() ? "Signing In" : "Sign In" }}</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+
+      <footer class="syn-auth-footer">
+        <p>
+          Don't have an account?
+          <a class="syn-link" routerLink="/register">Create an Account</a>
+        </p>
+      </footer>
+    </form>
+  </section>
+</main>

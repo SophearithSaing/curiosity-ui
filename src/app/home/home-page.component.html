@@ -1,0 +1,23 @@
+<main class="home-page">
+  <section class="home-card" aria-labelledby="home-title">
+    <div class="home-mark" aria-hidden="true">
+      <span class="material-symbols-outlined">neurology</span>
+    </div>
+
+    <p class="home-eyebrow">Workspace ready</p>
+    <h1 id="home-title" class="home-title">You're signed in.</h1>
+    <p class="home-copy">
+      Your learning workspace is connected. Topic browsing and active sessions
+      will appear here next.
+    </p>
+
+    <a
+      class="syn-button syn-button--primary"
+      routerLink="/login"
+      (click)="signOut()"
+    >
+      <span>Sign Out</span>
+      <span class="material-symbols-outlined">logout</span>
+    </a>
+  </section>
+</main>
