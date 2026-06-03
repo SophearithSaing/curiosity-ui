@@ -1,1 +1,457 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  color-scheme: dark;
+
+  --syn-surface: #101415;
+  --syn-surface-dim: #101415;
+  --syn-surface-bright: #363a3b;
+  --syn-surface-container-lowest: #0b0f10;
+  --syn-surface-container-low: #191c1e;
+  --syn-surface-container: #1d2022;
+  --syn-surface-container-high: #272a2c;
+  --syn-surface-container-highest: #323537;
+  --syn-on-surface: #e0e3e5;
+  --syn-on-surface-variant: #bcc9c6;
+  --syn-outline: #879391;
+  --syn-outline-variant: #3d4947;
+  --syn-primary: #6bd8cb;
+  --syn-on-primary: #003732;
+  --syn-primary-container: #29a195;
+  --syn-on-primary-container: #00302b;
+  --syn-primary-fixed: #89f5e7;
+  --syn-primary-fixed-dim: #6bd8cb;
+  --syn-secondary-container: #3f465c;
+  --syn-error: #ffb4ab;
+
+  --syn-font-heading: "Hanken Grotesk", system-ui, sans-serif;
+  --syn-font-body: "Geist", system-ui, sans-serif;
+  --syn-font-code: "JetBrains Mono", monospace;
+
+  --syn-radius-sm: 0.125rem;
+  --syn-radius-md: 0.375rem;
+  --syn-radius-lg: 0.5rem;
+  --syn-radius-xl: 0.75rem;
+
+  --syn-space-base: 0.25rem;
+  --syn-space-xs: 0.5rem;
+  --syn-space-sm: 1rem;
+  --syn-space-md: 1.5rem;
+  --syn-space-lg: 2.5rem;
+  --syn-space-xl: 4rem;
+  --syn-margin-mobile: 1rem;
+  --syn-margin-desktop: 3rem;
+
+  --syn-shadow-auth: 0 25px 50px rgb(0 0 0 / 0.5);
+  --syn-focus-ring:
+    0 0 0 2px var(--syn-surface-container), 0 0 0 4px var(--syn-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--syn-surface);
+  color: var(--syn-on-surface);
+  font-family: var(--syn-font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--syn-primary-container);
+  color: var(--syn-on-primary-container);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--syn-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--syn-surface-container-highest);
+  border-radius: var(--syn-radius-lg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--syn-outline-variant);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  line-height: 1;
+}
+
+.syn-auth-page {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      rgb(107 216 203 / 0.05) 0%,
+      transparent 50%
+    ),
+    var(--syn-surface);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: var(--syn-margin-mobile);
+  position: relative;
+}
+
+.syn-auth-page::before,
+.syn-auth-page::after {
+  border-radius: 9999px;
+  content: "";
+  filter: blur(7rem);
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+}
+
+.syn-auth-page::before {
+  background: var(--syn-primary-container);
+  height: 40vh;
+  left: -10vw;
+  opacity: 0.05;
+  top: -10vh;
+  width: 40vw;
+}
+
+.syn-auth-page::after {
+  background: var(--syn-secondary-container);
+  bottom: -10vh;
+  height: 30vh;
+  opacity: 0.1;
+  right: -10vw;
+  width: 30vw;
+}
+
+.syn-auth-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-space-lg);
+  max-width: 26.25rem;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.syn-auth-card {
+  background: var(--syn-surface-container);
+  border: 1px solid var(--syn-outline-variant);
+  border-radius: var(--syn-radius-xl);
+  box-shadow: var(--syn-shadow-auth);
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-space-lg);
+  padding: var(--syn-space-md);
+}
+
+.syn-auth-card--quiet {
+  box-shadow: none;
+}
+
+.syn-auth-brand {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-space-xs);
+  text-align: center;
+}
+
+.syn-auth-brand--outside {
+  margin-bottom: var(--syn-space-lg);
+}
+
+.syn-brand-mark {
+  align-items: center;
+  background: var(--syn-primary-container);
+  border-radius: var(--syn-radius-lg);
+  color: var(--syn-on-primary-container);
+  display: inline-flex;
+  height: 3rem;
+  justify-content: center;
+  margin-bottom: var(--syn-space-sm);
+  width: 3rem;
+}
+
+.syn-brand-mark .material-symbols-outlined {
+  font-size: 1.875rem;
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+.syn-brand-title {
+  color: var(--syn-primary);
+  font-family: var(--syn-font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 2.5rem;
+  margin: 0;
+}
+
+.syn-auth-title {
+  color: var(--syn-on-surface);
+  font-family: var(--syn-font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  margin: 0 0 var(--syn-space-xs);
+}
+
+.syn-auth-copy {
+  color: var(--syn-on-surface-variant);
+  font-family: var(--syn-font-body);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0;
+}
+
+.syn-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-space-md);
+}
+
+.syn-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--syn-space-base);
+}
+
+.syn-field-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: var(--syn-space-base);
+}
+
+.syn-label {
+  color: var(--syn-on-surface-variant);
+  font-family: var(--syn-font-code);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1rem;
+}
+
+.syn-label--uppercase {
+  text-transform: uppercase;
+}
+
+.syn-field-control {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.syn-field-icon {
+  color: var(--syn-on-surface-variant);
+  font-size: 1.125rem;
+  left: 0.75rem;
+  pointer-events: none;
+  position: absolute;
+}
+
+.syn-input,
+.syn-textarea {
+  background: var(--syn-surface-container-lowest);
+  border: 1px solid var(--syn-outline-variant);
+  border-radius: var(--syn-radius-lg);
+  color: var(--syn-on-surface);
+  outline: none;
+  padding: 0.6875rem 0.75rem;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+  width: 100%;
+}
+
+.syn-input {
+  min-height: 3rem;
+}
+
+.syn-input--with-leading-icon {
+  padding-left: 2.5rem;
+}
+
+.syn-input--with-trailing-action {
+  padding-right: 2.5rem;
+}
+
+.syn-input--code {
+  font-family: var(--syn-font-code);
+  font-size: 0.875rem;
+  font-weight: 450;
+  line-height: 1.25rem;
+}
+
+.syn-input::placeholder,
+.syn-textarea::placeholder {
+  color: var(--syn-outline);
+  opacity: 0.7;
+}
+
+.syn-input:focus,
+.syn-textarea:focus {
+  border-color: var(--syn-primary);
+  box-shadow: 0 0 0 1px var(--syn-primary);
+}
+
+.syn-field-action {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--syn-on-surface-variant);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 0.75rem;
+  transition: color 160ms ease;
+}
+
+.syn-field-action:hover {
+  color: var(--syn-primary);
+}
+
+.syn-field-action:focus-visible {
+  border-radius: var(--syn-radius-sm);
+  box-shadow: var(--syn-focus-ring);
+  outline: none;
+}
+
+.syn-link {
+  color: var(--syn-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.syn-link:hover {
+  color: var(--syn-primary-fixed-dim);
+}
+
+.syn-link:focus-visible {
+  border-radius: var(--syn-radius-sm);
+  box-shadow: var(--syn-focus-ring);
+  outline: none;
+}
+
+.syn-link--label {
+  font-family: var(--syn-font-code);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1rem;
+}
+
+.syn-button {
+  align-items: center;
+  border: 0;
+  border-radius: var(--syn-radius-lg);
+  cursor: pointer;
+  display: inline-flex;
+  gap: var(--syn-space-xs);
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.syn-button--primary {
+  background: var(--syn-primary);
+  color: var(--syn-on-primary);
+  font-family: var(--syn-font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+}
+
+.syn-button--compact {
+  font-family: var(--syn-font-code);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1rem;
+}
+
+.syn-button--full {
+  width: 100%;
+}
+
+.syn-button:hover {
+  background: var(--syn-primary-fixed);
+}
+
+.syn-button:active {
+  transform: scale(0.98);
+}
+
+.syn-button:focus-visible {
+  box-shadow: var(--syn-focus-ring);
+  outline: none;
+}
+
+.syn-auth-footer {
+  border-top: 1px solid var(--syn-outline-variant);
+  color: var(--syn-on-surface-variant);
+  padding-top: var(--syn-space-md);
+  text-align: center;
+}
+
+.syn-auth-footer p {
+  margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .syn-auth-page {
+    padding: var(--syn-margin-desktop);
+  }
+
+  .syn-auth-card {
+    padding: var(--syn-space-lg);
+  }
+
+  .syn-auth-card--spacious {
+    padding: var(--syn-space-xl);
+  }
+}
