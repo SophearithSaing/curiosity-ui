@@ -38,7 +38,9 @@
 ## Environment
 
 - **Shell:** PowerShell. Use PowerShell-compatible syntax (e.g., `;` instead of `&&` for command chaining).
+- **Command Preference:** Use PowerShell-native commands first for filesystem, search, and text inspection tasks (e.g., `Get-ChildItem`, `Get-Content`, `Select-String`) before trying Unix-style tools.
 - **Verification:** Prefer `npm.cmd run build` for local verification. Do not run `ng serve`; ask the user to verify browser/dev-server behavior instead.
+- **Formatting Timing:** Do not run Prettier after every small change. Run `npx prettier --write` only before committing code.
 
 ## Plan Guidelines
 
