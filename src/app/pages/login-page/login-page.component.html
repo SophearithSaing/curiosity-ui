@@ -8,15 +8,22 @@
 </header>
 
 <main class="login-main">
-  <section class="login-card" aria-labelledby="login-title">
-    <div class="login-card__header">
-      <h1 id="login-title">Log In</h1>
-      <p>Secure access for technical mastery.</p>
+  <section
+    class="syn-auth-panel syn-stack syn-stack--lg login-card"
+    aria-labelledby="login-title"
+  >
+    <div class="syn-auth-panel__header">
+      <h1 id="login-title" class="syn-auth-panel__title">Log In</h1>
+      <p class="syn-auth-panel__text">Secure access for technical mastery.</p>
     </div>
 
-    <form class="login-form" action="#" method="post">
+    <form
+      class="syn-auth-form syn-auth-form--plain syn-auth-form--comfortable"
+      action="#"
+      method="post"
+    >
       <label class="syn-field" for="loginEmail">
-        <span class="syn-field__label login-label"> Institutional Email </span>
+        <span class="syn-field__label login-label">Institutional Email</span>
         <span class="syn-input-wrap">
           <span class="material-symbols-outlined" aria-hidden="true">
             mail
@@ -34,9 +41,11 @@
       </label>
 
       <label class="syn-field" for="loginPassword">
-        <span class="login-field__row">
+        <span class="syn-split-row">
           <span class="syn-field__label login-label">Password</span>
-          <a href="#forgot">Forgot Password?</a>
+          <a class="syn-text-link syn-text-link--subtle" href="#forgot">
+            Forgot Password?
+          </a>
         </span>
         <span class="syn-input-wrap">
           <span class="material-symbols-outlined" aria-hidden="true">
@@ -65,7 +74,7 @@
     <div class="login-card__footer">
       <p>
         Require access?
-        <a routerLink="/register">Sign Up</a>
+        <a class="syn-text-link" routerLink="/register">Sign Up</a>
       </p>
     </div>
   </section>

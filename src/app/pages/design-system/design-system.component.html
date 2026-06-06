@@ -64,7 +64,7 @@
       <h2>Design Principles</h2>
     </div>
 
-    <div class="design-three-grid">
+    <div class="syn-grid syn-grid--3">
       @for (principle of principles; track principle.title) {
         <article class="syn-card">
           <span class="syn-icon material-symbols-outlined" aria-hidden="true">
@@ -87,7 +87,7 @@
 
     <div class="syn-card">
       <h3 class="syn-card__title">Technical Outlined Style</h3>
-      <div class="design-icon-row">
+      <div class="syn-inline-row">
         @for (icon of iconSamples; track icon) {
           <span class="design-icon-sample">
             <span class="syn-icon material-symbols-outlined" aria-hidden="true">
@@ -108,9 +108,9 @@
       </p>
     </div>
 
-    <div class="design-four-grid">
+    <div class="syn-grid syn-grid--4">
       @for (color of colors; track color.name) {
-        <article class="syn-card design-color-card">
+        <article class="syn-card syn-card--flush">
           <div class="design-swatch {{ color.className }}"></div>
           <div class="design-color-card__body">
             <span class="syn-kicker">{{ color.name }}</span>
@@ -136,7 +136,7 @@
       <h2>Typography</h2>
     </div>
 
-    <div class="syn-card design-type-card">
+    <div class="syn-card syn-card--flush">
       @for (specimen of typeSpecimens; track specimen.name) {
         <div class="design-type-row">
           <span class="syn-kicker">{{ specimen.name }}</span>
@@ -151,7 +151,7 @@
       <h2>Responsive Grid & Spacing</h2>
     </div>
 
-    <div class="design-two-grid">
+    <div class="syn-grid syn-grid--2">
       <article class="syn-card">
         <h3 class="syn-card__title">Layout Behavior</h3>
         <ul class="syn-plain-list">
@@ -180,10 +180,10 @@
       <h2>Component Library</h2>
     </div>
 
-    <div class="design-component-stack">
+    <div class="syn-stack syn-stack--lg">
       <article class="syn-card">
         <h3 class="syn-card__title">Interactive Elements</h3>
-        <div class="design-inline-controls">
+        <div class="syn-inline-row">
           <button class="syn-button syn-button--primary" type="button">
             Primary Action
           </button>
@@ -233,7 +233,7 @@
       </article>
 
       <article class="syn-card">
-        <div class="design-progress-heading">
+        <div class="syn-split-row">
           <h3 class="syn-card__title">Advanced Data Structures</h3>
           <span class="syn-chip">Module 3/5</span>
         </div>
