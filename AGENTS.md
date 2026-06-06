@@ -38,6 +38,7 @@
 ## Environment
 
 - **Shell:** PowerShell. Use PowerShell-compatible syntax (e.g., `;` instead of `&&` for command chaining).
+- **Verification:** Prefer `npm.cmd run build` for local verification. Do not run `ng serve`; ask the user to verify browser/dev-server behavior instead.
 
 ## Plan Guidelines
 
