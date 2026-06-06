@@ -19,8 +19,7 @@
 
     <form
       class="syn-auth-form syn-auth-form--plain syn-auth-form--comfortable"
-      action="#"
-      method="post"
+      (submit)="onSubmit($event)"
     >
       <label class="syn-field" for="loginEmail">
         <span class="syn-field__label login-label">Institutional Email</span>
@@ -63,12 +62,12 @@
         </span>
       </label>
 
-      <a class="syn-button syn-button--primary login-submit" routerLink="/home">
+      <button class="syn-button syn-button--primary login-submit" type="submit">
         Log In
         <span class="material-symbols-outlined" aria-hidden="true">
           arrow_forward
         </span>
-      </a>
+      </button>
     </form>
 
     <div class="login-card__footer">
