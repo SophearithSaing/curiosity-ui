@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 interface Principle {
@@ -38,6 +38,8 @@ interface SpacingToken {
   styleUrl: './design-system.component.scss',
 })
 export class DesignSystemComponent {
+  public readonly mobileNavOpen = signal(false);
+
   public readonly iconSamples: readonly string[] = [
     'auto_stories',
     'architecture',
@@ -159,4 +161,18 @@ export class DesignSystemComponent {
       value: '48px',
     },
   ];
+
+  /**
+   * Toggles the mobile navigation menu visibility.
+   */
+  public toggleMobileNav(): void {
+    this.mobileNavOpen.update((isOpen: boolean): boolean => !isOpen);
+  }
+
+  /**
+   * Closes the mobile navigation menu after navigation.
+   */
+  public closeMobileNav(): void {
+    this.mobileNavOpen.set(false);
+  }
 }

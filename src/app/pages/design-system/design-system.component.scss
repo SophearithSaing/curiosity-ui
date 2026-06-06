@@ -1,24 +1,3 @@
-.design-three-grid,
-.design-four-grid,
-.design-two-grid {
-  display: grid;
-  gap: var(--space-md);
-  grid-template-columns: 1fr;
-}
-
-.design-component-stack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.design-icon-row,
-.design-inline-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-}
-
 .design-icon-sample {
   align-items: center;
   border: 1px solid var(--color-outline-variant);
@@ -50,11 +29,6 @@
   background: var(--color-surface-container-lowest);
 }
 
-.design-color-card {
-  gap: 0;
-  padding: 0;
-}
-
 .design-color-card__body,
 .design-form-card {
   display: flex;
@@ -66,10 +40,6 @@
   padding: var(--space-sm);
 }
 
-.design-type-card {
-  gap: 0;
-}
-
 .design-type-row,
 .design-spacing-row {
   align-items: baseline;
@@ -78,6 +48,10 @@
   gap: var(--space-sm);
   grid-template-columns: 1fr;
   padding: var(--space-sm) 0;
+}
+
+.design-type-row .syn-display {
+  margin-bottom: 0;
 }
 
 .design-type-row:first-child,
@@ -91,12 +65,13 @@
   padding-bottom: 0;
 }
 
-.design-progress-heading,
 .design-question-heading {
   align-items: center;
+  border-bottom: 1px solid var(--color-outline-variant);
   display: flex;
   gap: var(--space-sm);
-  justify-content: space-between;
+  justify-content: flex-start;
+  padding-bottom: var(--space-sm);
 }
 
 .design-progress-label {
@@ -107,25 +82,7 @@
   gap: var(--space-sm);
 }
 
-.design-question-heading {
-  border-bottom: 1px solid var(--color-outline-variant);
-  justify-content: flex-start;
-  padding-bottom: var(--space-sm);
-}
-
 @media (min-width: 720px) {
-  .design-three-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .design-four-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .design-two-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .design-type-row,
   .design-spacing-row {
     grid-template-columns: 220px 1fr;
