@@ -18,7 +18,34 @@
     </nav>
 
     <span class="syn-kicker">v1.0.0</span>
+
+    <button
+      class="syn-menu-button"
+      type="button"
+      aria-label="Toggle navigation menu"
+      [attr.aria-expanded]="mobileNavOpen()"
+      (click)="toggleMobileNav()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        {{ mobileNavOpen() ? "close" : "menu" }}
+      </span>
+    </button>
   </div>
+
+  @if (mobileNavOpen()) {
+    <nav class="syn-mobile-nav" aria-label="Mobile navigation">
+      <a class="syn-mobile-nav__link" routerLink="/" (click)="closeMobileNav()">
+        Home
+      </a>
+      <a
+        class="syn-mobile-nav__link syn-mobile-nav__link--strong"
+        routerLink="/design-system"
+        (click)="closeMobileNav()"
+      >
+        Design
+      </a>
+    </nav>
+  }
 </header>
 
 <main class="syn-page-stack">
@@ -176,7 +203,7 @@
         <h3 class="syn-card__title">Form Controls & Ledger Validation</h3>
         <label class="syn-field">
           <span class="syn-field__label">Institutional Email</span>
-          <input class="syn-input" placeholder="student@university.edu" />
+          <input class="syn-input" placeholder="student@example.com" />
         </label>
         <label class="syn-field">
           <span class="syn-field__label">Focused State</span>

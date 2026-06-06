@@ -15,10 +15,69 @@
     </nav>
 
     <div class="landing-actions">
-      <a class="syn-button syn-button--secondary" href="#curriculum">Log In</a>
-      <a class="syn-button syn-button--primary" href="#curriculum">Sign Up</a>
+      <a class="syn-button syn-button--secondary" routerLink="/login">Log In</a>
+      <a class="syn-button syn-button--primary" routerLink="/register">
+        Sign Up
+      </a>
     </div>
+
+    <button
+      class="syn-menu-button"
+      type="button"
+      aria-label="Toggle navigation menu"
+      [attr.aria-expanded]="mobileNavOpen()"
+      (click)="toggleMobileNav()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        {{ mobileNavOpen() ? "close" : "menu" }}
+      </span>
+    </button>
   </div>
+
+  @if (mobileNavOpen()) {
+    <nav class="syn-mobile-nav" aria-label="Mobile navigation">
+      <a class="syn-mobile-nav__link" href="#home" (click)="closeMobileNav()">
+        Home
+      </a>
+      <a
+        class="syn-mobile-nav__link"
+        href="#philosophy"
+        (click)="closeMobileNav()"
+      >
+        Philosophy
+      </a>
+      <a
+        class="syn-mobile-nav__link"
+        href="#curriculum"
+        (click)="closeMobileNav()"
+      >
+        Curriculum
+      </a>
+      <a
+        class="syn-mobile-nav__link"
+        routerLink="/design-system"
+        (click)="closeMobileNav()"
+      >
+        Design
+      </a>
+      <div class="syn-mobile-nav__actions">
+        <a
+          class="syn-button syn-button--secondary"
+          routerLink="/login"
+          (click)="closeMobileNav()"
+        >
+          Log In
+        </a>
+        <a
+          class="syn-button syn-button--primary"
+          routerLink="/register"
+          (click)="closeMobileNav()"
+        >
+          Sign Up
+        </a>
+      </div>
+    </nav>
+  }
 </header>
 
 <main>
@@ -32,7 +91,7 @@
         internalize complex systems.
       </p>
       <div class="landing-hero__actions">
-        <a class="syn-button syn-button--primary" href="#curriculum">
+        <a class="syn-button syn-button--primary" routerLink="/register">
           Enter the Workspace
           <span class="material-symbols-outlined" aria-hidden="true">
             arrow_forward
